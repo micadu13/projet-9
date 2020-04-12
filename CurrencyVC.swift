@@ -10,16 +10,31 @@ import UIKit
 
 class CurrencyVC: UIViewController {
     
-    var currencyService = CurrencyService()
-
+    var rateToDollar: Double = 0.0
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        CurrencyService.getCurrency { (success, currency) in
+            if let rate = currency?.rates["USD"] {
+                self.rateToDollar = rate
+            }
+        }
+    }
     @IBOutlet weak var currencytobeconverted: UITextField!
    
     
     @IBAction func toconvert(_ sender: Any) {
-       
-        }
+        guard let from = currencytobeconverted.text,
+            let realFrom = Double(from)
+            else { return }
+        
+        let to = realFrom * rateToDollar
+        currencyconverted.text = "\(to)"
+        
+    }
     
-    @IBOutlet var currencyconverted: UIView!
+    @IBOutlet var currencyconverted: UITextField!
+    
 }
     
  
