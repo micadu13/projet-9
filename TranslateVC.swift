@@ -10,11 +10,33 @@ import UIKit
 
 class TranslateVC: UIViewController {
 
-    @IBOutlet weak var texttobetranslated: UITextField!
+    func showerror() {
+
+    let alert = UIAlertController(title: "Erreur", message: "Nothing to translate", preferredStyle: .alert)
+    let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+    alert.addAction(action)
+    self.present(alert, animated: true, completion: nil)
     
-    @IBAction func Totranslate(_ sender: Any) {
     }
     
-    @IBOutlet weak var texttranslated: UITextField!
+    @IBOutlet weak var textToBeTranslated: UITextField!
+    
+    @IBAction func Totranslate(_ sender: Any) {
+        guard let text = textToBeTranslated.text else {
+            return
+        }
+        
+        let whenFinish: (Bool, Translate?) -> Void = { (success, translation) in
+            if success {
+                self.textTranslated.text = translation?.result
+            } else {
+              
+                
+            }
+        }
+        TranslateService.gettranslation(textToTranslate: text, completionHandler: whenFinish)
+    }
+    
+    @IBOutlet weak var textTranslated: UITextField!
     
 }

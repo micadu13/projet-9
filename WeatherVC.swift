@@ -9,13 +9,18 @@
 import UIKit
 
 class WeatherVC: UIViewController {
-
-
-   
-    @IBOutlet weak var WeatherFirstCity: UIImageView!
+    @IBOutlet weak var weatherNY: UIImageView!
     
-    @IBAction func Validate(_ sender: Any) {
-    }
-
+    @IBOutlet weak var newyork: UILabel!
+    
+    @IBOutlet weak var tempNY: UILabel!
+    
     @IBOutlet weak var WeatherCityOfOrigin: UIImageView!
+    
+    @IBOutlet weak var marseille: UILabel!
+ 
+    @IBOutlet weak var tempMrs: UILabel!
+    
+    @IBOutlet weak var weatherMarseille: UIImageView!
+    
 }

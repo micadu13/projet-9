@@ -38,5 +38,3 @@ class CurrencyService {
        
    }
 
-// euro => $
-// Fixer API are by default relative to EUR
