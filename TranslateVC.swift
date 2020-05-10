@@ -9,14 +9,14 @@
 import UIKit
 
 class TranslateVC: UIViewController {
-
-    func showerror() {
-
-    let alert = UIAlertController(title: "Erreur", message: "Nothing to translate", preferredStyle: .alert)
-    let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-    alert.addAction(action)
-    self.present(alert, animated: true, completion: nil)
     
+    func showerror() {
+        
+        let alert = UIAlertController(title: "Erreur", message: "Nothing to translate", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     @IBOutlet weak var textToBeTranslated: UITextField!
@@ -25,18 +25,23 @@ class TranslateVC: UIViewController {
         guard let text = textToBeTranslated.text else {
             return
         }
-        
-        let whenFinish: (Bool, Translate?) -> Void = { (success, translation) in
-            if success {
-                self.textTranslated.text = translation?.result
-            } else {
-              
-                
+        let whenFinish: (Bool, Translate?) -> Void = { (success, translate) in
+            
+            if success == true{
+                let theText = translate?.data.translations[0].translatedText
+                self.textTranslated.text = theText
+            }
+            else {
+                self.showerror()
             }
         }
         TranslateService.gettranslation(textToTranslate: text, completionHandler: whenFinish)
+        
     }
-    
     @IBOutlet weak var textTranslated: UITextField!
     
+    
+    
+    
 }
+

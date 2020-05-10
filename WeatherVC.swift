@@ -9,18 +9,25 @@
 import UIKit
 
 class WeatherVC: UIViewController {
-    @IBOutlet weak var weatherNY: UIImageView!
-    
-    @IBOutlet weak var newyork: UILabel!
-    
-    @IBOutlet weak var tempNY: UILabel!
-    
-    @IBOutlet weak var WeatherCityOfOrigin: UIImageView!
-    
-    @IBOutlet weak var marseille: UILabel!
  
-    @IBOutlet weak var tempMrs: UILabel!
+            
+    @IBOutlet weak var description_newyork: UITextField!
     
-    @IBOutlet weak var weatherMarseille: UIImageView!
+    @IBOutlet weak var temperature_NY: UITextField!
     
+    @IBOutlet weak var icon_ny: UIImageView!
+    
+    
+    @IBOutlet weak var description_mrs: UITextField!
+    
+    @IBOutlet weak var temperature_mrs: UITextField!
+    
+    @IBOutlet weak var icon_mrs: UIImageView!
+    
+    override func viewDidLoad() {
+           super.viewDidLoad()
+           WeatherService.getWeatherNewYork { (success, weatherNewYork) in
+           
+           }
+       }
 }

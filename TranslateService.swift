@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 class TranslateService {
     
-   // let text = tvc.gettapedtext()
+    
     private static let getUrl = URL(string: "https://translation.googleapis.com/language/translate/v2")!
  
     static func gettranslation(textToTranslate: String, completionHandler: @escaping (Bool, Translate?)-> Void){
@@ -36,8 +36,7 @@ class TranslateService {
                            }
                            return completionHandler(true, translate)
             }
-           
-            
+     
         }
         task.resume()
     }

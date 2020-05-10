@@ -22,9 +22,7 @@ class CurrencyVC: UIViewController {
             }
         }
     }
-    
-    
-    
+  
     @IBOutlet weak var currencyToBeConverted: UITextField!
    
     
@@ -46,8 +44,6 @@ class CurrencyVC: UIViewController {
         currencyConverted.text = "\(to)"
         
     }
-    
-    
     
     @IBOutlet var currencyConverted: UITextField!
     
