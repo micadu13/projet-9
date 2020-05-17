@@ -9,6 +9,31 @@
 import UIKit
 
 class WeatherVC: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        WeatherService.getWeatherFromNewYork(completionHandler: { (success, weatherNewYork) in
+            if let tempinNY = weatherNewYork?.main.temp {
+                let tempInCelsiusInNY = ((Int(tempinNY)-32)*(5/9))
+                self.temperature_NY.text = "\(tempinNY)"
+            }
+            return
+            
+            if let descriptioninNY = weatherNewYork?.weather[0]{
+                self.description_newyork.text = "\(descriptioninNY)"
+            }
+            return
+            
+            if let iconinNY = weatherNewYork?.weather[2]{
+                let icontextNY = iconinNY
+                //self.icon_ny.image =
+ 
+            }
+            
+            
+        })
+    }
  
             
     @IBOutlet weak var description_newyork: UITextField!
@@ -24,10 +49,5 @@ class WeatherVC: UIViewController {
     
     @IBOutlet weak var icon_mrs: UIImageView!
     
-    override func viewDidLoad() {
-           super.viewDidLoad()
-           WeatherService.getWeatherNewYork { (success, weatherNewYork) in
-           
-           }
-       }
+    
 }

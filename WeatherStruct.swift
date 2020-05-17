@@ -9,9 +9,8 @@
 import Foundation
 struct WeatherStruct:  Codable {
 
-    var temp:Main
-    var icon: [Weather]
-    var description:[Weather]
+    var main: Main
+    var weather:[Weather]
 }
 
 
@@ -30,5 +29,3 @@ struct Main:Codable {
     var pressure: Double
    var humidity: Double
 }
-
-
