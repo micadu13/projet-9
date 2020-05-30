@@ -9,18 +9,17 @@
 import Foundation
 struct WeatherStruct:  Codable {
 
+    var weather:[List]
     var main: Main
-    var weather:[Weather]
+ 
 }
 
-
-struct Weather: Codable {
-    var description: String
+struct List: Codable {
     var id: Int
+    var main: String
+    var description: String
     var icon: String
-    
 }
-
 struct Main:Codable {
    var temp : Double
     var feels_like: Double
@@ -29,3 +28,4 @@ struct Main:Codable {
     var pressure: Double
    var humidity: Double
 }
+

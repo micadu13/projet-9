@@ -15,24 +15,39 @@ class WeatherVC: UIViewController {
         
         WeatherService.getWeatherFromNewYork(completionHandler: { (success, weatherNewYork) in
             if let tempinNY = weatherNewYork?.main.temp {
-                let tempInCelsiusInNY = ((Int(tempinNY)-32)*(5/9))
-                self.temperature_NY.text = "\(tempinNY)"
+                let tempInCelsiusInNY = tempinNY-273.5
+                self.temperature_NY.text = String(format: "%.2f °C", tempInCelsiusInNY)
             }
-            return
             
-            if let descriptioninNY = weatherNewYork?.weather[0]{
-                self.description_newyork.text = "\(descriptioninNY)"
+            if let descriptioninNY = weatherNewYork?.weather[0].main {
+                self.description_newyork.text = descriptioninNY
             }
-            return
             
-            if let iconinNY = weatherNewYork?.weather[2]{
-                let icontextNY = iconinNY
-                //self.icon_ny.image =
+            if let weatherNewYork = weatherNewYork{
+                WeatherService.getWeatherImage(weatherNewYork) { (image) in
+                               self.icon_ny.image = image
+                           }
+            }
  
+   })
+ 
+        WeatherService.getWeatherFromMarseille(completionHandler: { (success, weatherMarseille) in
+            if let tempinMrs = weatherMarseille?.main.temp {
+                     let tempInCelsiusInMrs = tempinMrs-273.5
+                     self.temperature_mrs.text = String(format: "%.2f °C", tempInCelsiusInMrs)
+                 }
+                 
+            if let description_mrs = weatherMarseille?.weather[0].main{
+                     self.description_mrs.text = "\(description_mrs)"
+                 }
+            if let weatherMarseille = weatherMarseille{
+                WeatherService.getWeatherImage(weatherMarseille) { (image) in
+                    self.icon_mrs.image = image
+                }
             }
-            
             
         })
+   
     }
  
             
