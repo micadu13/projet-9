@@ -8,15 +8,19 @@
 
 import Foundation
 class CurrencyService {
-// récuperer la donnée
+
     
- //access_key= 2a6f5a694e984c4510973aa428c48c67
-   
     private static let currencyUrl = URL(string: "http://data.fixer.io/api/latest?access_key=2a6f5a694e984c4510973aa428c48c67&format=1")!
+        
+    var session: URLSession
     
-    static func getCurrency(completionHandler: @escaping (Bool, Currency?)->Void){
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: currencyUrl){(data, response, error) in
+    init(session: URLSession) {
+        self.session = session
+    }
+    
+     func getCurrency(completionHandler: @escaping (Bool, Currency?)->Void){
+       // let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: CurrencyService.currencyUrl){(data, response, error) in
             
             guard let data = data, error == nil else {
                 return completionHandler(false, nil)

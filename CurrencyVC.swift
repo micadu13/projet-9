@@ -8,14 +8,18 @@
 
 import UIKit
 
+
+
 class CurrencyVC: UIViewController {
+    
+    var currency = CurrencyService(session: URLSession(configuration: .default))
     
     var rateToDollar: Double = 0.0
     var rateToEuro: Double = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CurrencyService.getCurrency { (success, currency) in
+        currency.getCurrency { (success, currency) in
             if let rate = currency?.rates["USD"] {
                 self.rateToDollar = rate
                 self.rateToEuro = 1 / self.rateToDollar
