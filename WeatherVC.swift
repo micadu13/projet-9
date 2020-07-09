@@ -13,7 +13,9 @@ class WeatherVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        WeatherService.getWeatherFromNewYork(completionHandler: { (success, weatherNewYork) in
+        var weather = WeatherService(session: URLSession(configuration: .default))
+
+        weather.getWeatherFromNewYork(completionHandler: { (success, weatherNewYork) in
             if let tempinNY = weatherNewYork?.main.temp {
                 let tempInCelsiusInNY = tempinNY-273.5
                 self.temperature_NY.text = String(format: "%.2f °C", tempInCelsiusInNY)
@@ -24,14 +26,14 @@ class WeatherVC: UIViewController {
             }
             
             if let weatherNewYork = weatherNewYork{
-                WeatherService.getWeatherImage(weatherNewYork) { (image) in
+                weather.getWeatherImage(weatherNewYork) { (image) in
                                self.icon_ny.image = image
                            }
             }
  
    })
  
-        WeatherService.getWeatherFromMarseille(completionHandler: { (success, weatherMarseille) in
+        weather.getWeatherFromMarseille(completionHandler: { (success, weatherMarseille) in
             if let tempinMrs = weatherMarseille?.main.temp {
                      let tempInCelsiusInMrs = tempinMrs-273.5
                      self.temperature_mrs.text = String(format: "%.2f °C", tempInCelsiusInMrs)
@@ -41,7 +43,7 @@ class WeatherVC: UIViewController {
                      self.description_mrs.text = "\(description_mrs)"
                  }
             if let weatherMarseille = weatherMarseille{
-                WeatherService.getWeatherImage(weatherMarseille) { (image) in
+                weather.getWeatherImage(weatherMarseille) { (image) in
                     self.icon_mrs.image = image
                 }
             }

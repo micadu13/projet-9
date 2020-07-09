@@ -10,6 +10,8 @@ import UIKit
 
 class TranslateVC: UIViewController {
     
+     var translate = TranslateService(session: URLSession(configuration: .default))
+    
     func showerror() {
         
         let alert = UIAlertController(title: "Erreur", message: "Nothing to translate", preferredStyle: .alert)
@@ -35,7 +37,7 @@ class TranslateVC: UIViewController {
                 self.showerror()
             }
         }
-        TranslateService.gettranslation(textToTranslate: text, completionHandler: whenFinish)
+        translate.gettranslation(textToTranslate: text, completionHandler: whenFinish)
         
     }
     @IBOutlet weak var textTranslated: UITextField!
