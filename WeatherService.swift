@@ -21,9 +21,9 @@ class WeatherService{
      self.session = session
  }
     
-     func getWeatherFromNewYork(completionHandler: @escaping (Bool, WeatherStruct?) -> Void) {
+    func getWeather(_ url: URL, completionHandler: @escaping (Bool, WeatherStruct?) -> Void) {
         //let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: WeatherService.weatherNewYork){(data, response, error) in
+        let task = session.dataTask(with: url){(data, response, error) in
             
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
@@ -43,6 +43,10 @@ class WeatherService{
             
         }
         task.resume()
+    }
+    
+     func getWeatherFromNewYork(completionHandler: @escaping (Bool, WeatherStruct?) -> Void) {
+        getWeather(WeatherService.weatherNewYork, completionHandler: completionHandler)
     }
  
      func getWeatherImage(_ weather: WeatherStruct, completionHandler: @escaping (UIImage?) -> Void) {
@@ -67,28 +71,7 @@ class WeatherService{
         }
     
      func getWeatherFromMarseille(completionHandler: @escaping (Bool, WeatherStruct?) -> Void){
-        //let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: WeatherService.weatherMarseille){(data, response, error) in
-            
-            DispatchQueue.main.async {
-                guard let data = data, error == nil else {
-                    return completionHandler(false, nil)
-                }
-                
-                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    return completionHandler(false, nil)
-                }
-                
-                guard let weatherMarseille = try? JSONDecoder().decode(WeatherStruct.self, from: data) else {
-                    return completionHandler(false, nil)
-                }
-                
-                return completionHandler(true, weatherMarseille)
-            }
-            
-        }
-        task.resume()
-        
+        getWeather(WeatherService.weatherMarseille, completionHandler: completionHandler)
     }
     
     

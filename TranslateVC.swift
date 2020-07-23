@@ -21,7 +21,7 @@ class TranslateVC: UIViewController {
         
     }
     
-    @IBOutlet weak var textToBeTranslated: UITextField!
+    @IBOutlet weak var textToBeTranslated: UITextView!
     
     @IBAction func Totranslate(_ sender: Any) {
         guard let text = textToBeTranslated.text else {
@@ -40,7 +40,7 @@ class TranslateVC: UIViewController {
         translate.gettranslation(textToTranslate: text, completionHandler: whenFinish)
         
     }
-    @IBOutlet weak var textTranslated: UITextField!
+    @IBOutlet weak var textTranslated: UITextView!
     
     
     

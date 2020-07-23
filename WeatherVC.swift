@@ -18,7 +18,7 @@ class WeatherVC: UIViewController {
         weather.getWeatherFromNewYork(completionHandler: { (success, weatherNewYork) in
             if let tempinNY = weatherNewYork?.main.temp {
                 let tempInCelsiusInNY = tempinNY-273.5
-                self.temperature_NY.text = String(format: "%.2f °C", tempInCelsiusInNY)
+                self.temperature_NY.text = String(format: "%.0f °C", tempInCelsiusInNY)
             }
             
             if let descriptioninNY = weatherNewYork?.weather[0].main {
@@ -36,7 +36,7 @@ class WeatherVC: UIViewController {
         weather.getWeatherFromMarseille(completionHandler: { (success, weatherMarseille) in
             if let tempinMrs = weatherMarseille?.main.temp {
                      let tempInCelsiusInMrs = tempinMrs-273.5
-                     self.temperature_mrs.text = String(format: "%.2f °C", tempInCelsiusInMrs)
+                     self.temperature_mrs.text = String(format: "%.0f °C", tempInCelsiusInMrs)
                  }
                  
             if let description_mrs = weatherMarseille?.weather[0].main{
